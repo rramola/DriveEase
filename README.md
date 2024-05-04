@@ -38,3 +38,17 @@ Here are the baseline requirements. Your application must:
     - Github Classroom: Teachers create assignments that they give to students
     - LinkedIn: Companies create jobs that candidates apply to
     - Uber: Riders request rides, and a Driver provides rides
+
+
+
+
+
+Care rental app.
+
+Users can sign up, log in, and list their cars for rent. They can provide details about each car, such as model, year, daily rental price, and availability.
+
+Other users can then browse the available cars, select the ones they're interested in, and make rental requests. The system would manage the booking process, including scheduling, payments, and notifications.
+
+For permissions and groups, you could have regular users and car owners. Regular users can browse and rent cars, while car owners have additional permissions to list their cars and manage bookings.
+
+This app would use form objects to validate car listings and rental requests, and appropriate database relationships to track cars, users, and bookings. Certain pages, such as car listing management or booking approval, could be restricted to logged-in users.
