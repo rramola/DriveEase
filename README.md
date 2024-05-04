@@ -43,7 +43,7 @@ Here are the baseline requirements. Your application must:
 
 
 
-Care rental app.
+Car rental app.
 
 Users can sign up, log in, and list their cars for rent. They can provide details about each car, such as model, year, daily rental price, and availability.
 
