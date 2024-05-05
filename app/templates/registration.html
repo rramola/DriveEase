@@ -1,11 +1,46 @@
 {% extends "home.html" %}
 
 {% block content %}
-<p>Registration</p>
-<form method="POST" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Submit</button>
-</form>
+<div id="registration_form_container">
+    <div id="registration_form_container_title">
+        <p>Registration</p>
+    </div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div id="create_user_form_name_input_field_container">
+            <div class="input_icon">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            {{form.username.label}}
+            {{form.username}}
+        </div>
+        <div id="create_user_form_email_input_field_container">
+            <div class="input_icon">
+                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+            </div>
+            {{form.email.label}}
+            {{form.email}}
+        </div>
+        <div id="create_user_form_pass1_input_field_container">
+            <div class="input_icon">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            {{form.password1.label}}
+            {{form.password1}}
+        </div>
+        <div id="create_user_form_pass2_input_field_container">
+            <div class="input_icon">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            
+            {{form.password2.label}}
+            {{form.password2}}
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+</div>
+
+
 {% endblock content %}
 
