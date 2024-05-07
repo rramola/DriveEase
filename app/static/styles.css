@@ -2,6 +2,83 @@ body {
     margin: 0;
 }
 
+
+/* LOGIN PAGE STYLES */
+#login_form_page_container {
+    display: flex;
+    background-color: darkcyan;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#login_form_container {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    width: 40%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding-top:1rem;
+    border-radius: .3rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login_form_container_title > p {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    color: rgb(32, 31, 31);
+    font-weight: 800;
+}
+
+#login_user_form_name_input_field_container {
+    display: flex;
+    height: 2.5rem;
+    padding-top: 2rem;
+}
+
+#login_user_form_pass1_input_field_container{
+    display: flex;
+    height: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+
+#login_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login_user_submit_button {
+    height: 15%;
+    width: 70%;
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    border-radius: .3rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+
+
+#login_user_submit_button:hover {
+    transform: scale(1.1);
+}
+
+#login_user_submit_button:active {
+    background-color: green;
+}
+
+
+
+
+/* REGISTRATION PAGE STYLES */
 #registration_form_page_container {
     display: flex;
     background-color: darkcyan;
@@ -16,9 +93,10 @@ body {
     flex-direction: column;
     background-color: lightblue;
     width: 40%;
-    height: 50%;
+    height: fit-content;
     justify-content: center;
     align-items: center;
+    padding-top:1rem;
     border-radius: .3rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

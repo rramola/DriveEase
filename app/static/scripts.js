@@ -4,9 +4,17 @@ document.addEventListener("DOMContentLoaded", function() {
     var passOneField = document.getElementById("id_password1");
     var passTwoField = document.getElementById("id_password2");
     
-    usernameField.placeholder = "Username..";
-    emailField.placeholder = "Email..";
-    passOneField.placeholder = "Password..";
-    passTwoField.placeholder = "Password..";
-}
+    if (usernameField) {
+        usernameField.placeholder = "Username..";
+        }
+    if (emailField) {
+        emailField.placeholder = "Email..";
+        }
+    if (passOneField){
+        passOneField.placeholder = "Password..";
+        }
+    if (passTwoField) {
+        passTwoField.placeholder = "Password..";
+        }
+    }
     );

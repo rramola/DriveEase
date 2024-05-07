@@ -35,6 +35,12 @@
             </div>
             <button type="submit" id="create_user_submit_button">Register</button>
         </form>
+        <div id="form_error_message_container">
+            {{form.errors}}
+        </div>
+        <div class="user_create_form_login_container">
+            <p>Already have an account? <a href={% url 'login'%}>Login</a></p>
+        </div>
     </div>
     
 </div>
