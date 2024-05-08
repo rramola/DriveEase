@@ -12,9 +12,15 @@
     <script src="{% static 'scripts.js' %}"></script> 
 <body>
     {% block content %}
-    <p> hello</p>
-    <a href = {% url "register" %}>signup</a>
-    <a href = {% url "login" %}>login</a>
+    <div id="home_page_container">
+        <div id="nav_container">
+            <a href = {% url "register" %}>signup</a>
+            <a href = {% url "login" %}>login</a>
+            <a href = {% url "listings" %}>listings</a>
+
+        </div>
+
+    </div>
     {% endblock content %}
 
 
