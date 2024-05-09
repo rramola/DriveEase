@@ -1,2 +1,42 @@
-{% extends "home.html" %} {% block content %} {% for listing in listings %}
-{{listing.user.name}} {% endfor %} {%endblock content%}
+{% extends "home.html" %}
+
+{% block content %} 
+<div id="listing_page_container">
+    <div id="listing_page_header_container">
+        <p>LISTINGS</p>
+    </div>
+
+    <div id="listings_container">
+        {% for listing in listings %}
+
+        <div class="listing_card">
+            <div class="listing_card_vehicle_image">
+                <p>image here</p>
+            </div>
+            <div class="listing_card_vehicle_info_container">
+                <div class="listing_card_vehicle_year">
+                    {{listing.vehicle.year}}
+                </div>
+                <div class="listing_card_vehicle_make">
+                    {{listing.vehicle.make}}
+                </div>
+                <div class="listing_card_vehicle_model"> 
+                    {{listing.vehicle.model}} 
+                </div>
+            </div>
+            <div class-"listing_card__profile_info_container">
+                <div class="listing_card__profile_name">
+                {{listing.profile.name}} 
+                </div>
+            </div>
+            <div class="listing_card_price_container">
+                <div class="listing_card_price">
+                    {{listing.price}} 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{%endblock content%}

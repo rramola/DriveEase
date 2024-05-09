@@ -174,3 +174,19 @@ body {
     width: 3rem;
     border-radius: .2rem 0 0 .2rem
 }
+
+/* LISTING PAGE STYLES */
+#listing_page_header_container {
+    text-align: center;
+    font-size:2.5rem;
+    font-weight: 800;
+}
+#listings_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 4rem;
+}
+.listing_card {
+    background-color: white;
+    margin-bottom: 2rem;
+}
