@@ -22,6 +22,9 @@ class Vehicle(models.Model):
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.year} {self.make} {self.model}"
+
 
 class Listing(models.Model):
     profile = models.ForeignKey(Profile, verbose_name="user", on_delete=models.CASCADE)
@@ -29,20 +32,3 @@ class Listing(models.Model):
         Vehicle, verbose_name="vehicle", on_delete=models.CASCADE
     )
     price = models.IntegerField(null=True)
-
-
-def create_profile(name, email):
-    new_profile= Profile(name=name, email=email)
-    new_profile.save()
-    return new_profile
-
-
-def create_vehicle(profile, year, make, model):
-    new_vehicle = Vehicle(profile=profile,year=year, make=make, model=model)
-    new_vehicle.save()
-    return new_vehicle
-
-def create_listing(profile, vehicle):
-    new_listing = Listing(profile=profile, vehicle=vehicle)
-    new_listing.save()
-    return new_listing

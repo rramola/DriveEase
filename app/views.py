@@ -5,11 +5,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+
 # Create your views here.
 from .forms import *
 from .models import *
 
 
+@login_required(login_url="login")
 def home_page(request):
     context = {}
     return render(request, "home.html", context)
@@ -21,11 +23,11 @@ def registration_page(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get("username")
-            group = Group.objects.get(name='regular')
+            fname = form.cleaned_data.get("first_name")
+            email = form.cleaned_data.get("email")
+            group = Group.objects.get(name="regular")
             user.groups.add(group)
-            Profile.objects.create(
-                user=user
-            )
+            Profile.objects.create(user=user, name=fname, email=email)
             messages.success(request, "Account was created for" + username)
             return redirect("login")
     else:
@@ -57,16 +59,18 @@ def logout_user(request):
     logout(request)
     return redirect("login")
 
-@login_required(login_url="login")
 
+@login_required(login_url="login")
 def listings_page(request):
     listings = Listing.objects.all()
     context = {"listings": listings}
     return render(request, "listing.html", context)
 
+
 @login_required(login_url="login")
 def garage_page(request):
-    context = {}
+    vehicles = Vehicle.objects.filter(profile__name=request.user.first_name)
+    context = {"vehicles": vehicles}
     return render(request, "garage.html", context)
 
 
@@ -80,10 +84,19 @@ def add_vehicle_page(request):
             vehicle = form.save(commit=False)
             vehicle.profile = profile
             vehicle.save()
-            return redirect('home')
-    context = {"form": form
-    }
+            return redirect("garage")
+    context = {"form": form}
     return render(request, "add_vehicle.html", context)
+
+
+def delete_vehicle_page(request, pk):
+    vehicle = Vehicle.objects.get(id=pk)
+    context = {"vehicle": vehicle}
+    if request.method == "POST":
+        vehicle.delete()
+        return redirect("garage")
+
+    return render(request, "delete_vehicle.html", context)
 
 
 @login_required(login_url="login")
@@ -95,6 +108,6 @@ def new_listing_page(request):
             listing = form.save(commit=False)
             listing.profile = request.user.profile
             listing.save()
-            return redirect('home')
-    context = {"form":form}
+            return redirect("home")
+    context = {"form": form}
     return render(request, "new_listing.html", context)

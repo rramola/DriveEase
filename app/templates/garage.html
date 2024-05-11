@@ -1,7 +1,37 @@
-{% extends "home.html" %}
+{% extends "home.html" %} {% block content %} 
 
-{% block content %}
+<div id="listing_page_container">
+    <div id="listing_page_header_container">
+        <p>Your Vehicles</p>
+        <div id="add_new_vehicle_button_container">
+            <button><a href = {% url "add-vehicle" %}>add new vehicle</a></button>
+        </div>
+    </div>
 
+    <div id="listings_container">
+        {% for vehicle in vehicles %}
 
+        <div class="listing_card">
+            <div class="listing_card_vehicle_image">
+                <p>image here</p>
+            </div>
+            <div class="listing_card_vehicle_info_container">
+                <div class="listing_card_vehicle_year">
+                    {{vehicle.year}}
+                </div>
+                <div class="listing_card_vehicle_make">
+                    {{vehicle.make}}
+                </div>
+                <div class="listing_card_vehicle_model"> 
+                    {{vehicle.model}} 
+                </div>
+            </div>
+            <div id="delete_vehicle_info_button_container">
+                <button><a href="{%url 'delete-vehicle' vehicle.id%}">Delete</a></button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
-{% endblock content %}
+</div>
+{%endblock content%}

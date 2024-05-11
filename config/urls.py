@@ -23,6 +23,7 @@ urlpatterns = [
     path("new-listing/", new_listing_page, name="new-listing"),
     path("garage/", garage_page, name="garage"),
     path("add-vehicle/", add_vehicle_page, name="add-vehicle"),
+    path("delete-vehicle/<str:pk>/", delete_vehicle_page, name="delete-vehicle"),
     path("register/", registration_page, name="register"),
     path("login/", login_page, name="login"),
     path("logout/", logout_user, name="logout"),

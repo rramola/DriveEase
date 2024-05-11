@@ -1,0 +1,12 @@
+{% extends "home.html" %} {% block content %}
+<div id="delete_vehicle_page_container">
+  <p>
+    Are you sure you want to delete your {{vehicle.year}} {{vehicle.make}}
+    {{vehicle.model}}?
+  </p>
+  <form method="POST" action="{%url 'delete-vehicle' vehicle.id%}">
+    {% csrf_token %}
+    <a href="{%url 'garage' %}">Cancel</a> <input type="submit" />
+  </form>
+</div>
+{% endblock content %}

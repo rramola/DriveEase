@@ -4,15 +4,24 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import *
 
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password1",
+            "password2",
+        ]
+
 
 class AddVehicleForm(ModelForm):
     class Meta:
         model = Vehicle
-        fields = ['year', 'make', 'model']
+        fields = ["year", "make", "model"]
 
 
 class CreateListingForm(ModelForm):
@@ -21,7 +30,9 @@ class CreateListingForm(ModelForm):
         fields = ["vehicle", "price"]
 
     def __init__(self, *args, **kwargs):
-        user_profile = kwargs.pop('user_profile', None)
+        user_profile = kwargs.pop("user_profile", None)
         super(CreateListingForm, self).__init__(*args, **kwargs)
         if user_profile:
-            self.fields['vehicle'].queryset = Vehicle.objects.filter(profile=user_profile)
+            self.fields["vehicle"].queryset = Vehicle.objects.filter(
+                profile=user_profile
+            )

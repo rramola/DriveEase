@@ -11,21 +11,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <script src="{% static 'scripts.js' %}"></script> 
 <body>
-    {% block content %}
     <div id="home_page_container">
         <div id="nav_container">
+            <a href = {% url "home" %}>home</a>
             <a href = {% url "register" %}>signup</a>
             <a href = {% url "login" %}>login</a>
             <a href = {% url "listings" %}>listings</a>
             <a href = {% url "garage" %}>garage</a>
-            <a href = {% url "add-vehicle" %}>add vehicle</a>
             <a href = {% url "new-listing" %}>new-listing</a>
-
             <a href="{%url 'logout'%}">logout</a>
-
         </div>
-
     </div>
+    {% block content %}
+   <p>Welcome</p>
     {% endblock content %}
 
 
