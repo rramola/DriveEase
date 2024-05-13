@@ -29,9 +29,9 @@ class CreateListingForm(ModelForm):
         model = Listing
         fields = ["vehicle", "price"]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         user_profile = kwargs.pop("user_profile", None)
-        super(CreateListingForm, self).__init__(*args, **kwargs)
+        super(CreateListingForm, self).__init__(**kwargs)
         if user_profile:
             self.fields["vehicle"].queryset = Vehicle.objects.filter(
                 profile=user_profile

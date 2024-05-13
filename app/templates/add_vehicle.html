@@ -6,11 +6,15 @@
     <div id="add_vehicle_form_header">
       <p>Add New Vehicle</p>
     </div>
-
+    <div id="add_vehicle_form_year_input_container">{{form.image}}</div>
     <div id="add_vehicle_form_year_input_container">{{form.year}}</div>
     <div id="add_vehicle_form_make_input_container">{{form.make}}</div>
     <div id="add_vehicle_form_model_input_container">{{form.model}}</div>
     <button type="submit" id="add_vehicle_form_submit_button">Add</button>
+    <button id="add_vehicle_form_cancel_button">
+      <a href="{% url 'garage' %}">Cancel</a>
+    </button>
   </form>
 </div>
 {% endblock content %}
+

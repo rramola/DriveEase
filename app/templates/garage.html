@@ -1,10 +1,25 @@
 {% extends "home.html" %} {% block content %} 
 
 <div id="listing_page_container">
+    <div id="nav_container">
+        <a href = {% url "garage" %}>Your Garage</a>
+        <a href = {% url "listings" %}>Listings</a>
+        <a href="{%url 'logout'%}">Logout</a>
+    </div>
     <div id="listing_page_header_container">
         <p>Your Vehicles</p>
-        <div id="add_new_vehicle_button_container">
-            <button><a href = {% url "add-vehicle" %}>add new vehicle</a></button>
+        <div id="garage_buttons_container">
+            <form action={% url "add-vehicle" %}>
+                <div id="add_new_vehicle_button_container">
+                    <button type="submit">Add New Vehicle</a></button>
+                </div>
+            </form>
+
+            <form action={% url "new-listing" %}>
+                <div id="create_new_listing_button_container">
+                    <button type="submit">Create New Listing</a></button>        
+                </div>
+            </form>
         </div>
     </div>
 
@@ -13,7 +28,7 @@
 
         <div class="listing_card">
             <div class="listing_card_vehicle_image">
-                <p>image here</p>
+                <i class="fas fa-car-side"></i>
             </div>
             <div class="listing_card_vehicle_info_container">
                 <div class="listing_card_vehicle_year">
@@ -27,7 +42,9 @@
                 </div>
             </div>
             <div id="delete_vehicle_info_button_container">
-                <button><a href="{%url 'delete-vehicle' vehicle.id%}">Delete</a></button>
+                <form action={%url 'delete-vehicle' vehicle.id%}>
+                    <button type="submit" id="cancel_button">Delete</a></button>
+                </form>
             </div>
         </div>
         {% endfor %}

@@ -13,11 +13,17 @@ class Profile(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
 
-
 class Vehicle(models.Model):
     profile = models.ForeignKey(
         Profile, verbose_name="user_profile", on_delete=models.CASCADE, default=""
     )
+    # image = models.ImageField(
+    #     upload_to="vehicle_images",
+    #     height_field=None,
+    #     width_field=None,
+    #     max_length=None,
+    #     default="",
+    # )
     year = models.IntegerField()
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)

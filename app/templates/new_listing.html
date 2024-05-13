@@ -1,9 +1,16 @@
-{% extends "home.html" %}
-
-{% block content %}
-<form method="POST" action="">
+{% extends "home.html" %} {% block content %}
+<div id="create_listing_page_container">
+  <form method="POST" action="" id="create_new_listing_form">
     {% csrf_token %}
-    {{form}}
-    <input type="submit">
-</form>
+    <div id="create_new_listing_form_header">
+      <p>Create New Listing</p>
+    </div>
+    <div id="create_listing_vehicle_selection_container">{{form.vehicle}}</div>
+    <div id="create_listing_vehicle_price_container">{{form.price}}</div>
+    <button type="submit" id="add_vehicle_form_submit_button">Add</button>
+    <button id="create_listing_cancel_button">
+      <a href="{% url 'garage' %}">Cancel</a>
+    </button>
+  </form>
+</div>
 {% endblock content %}
