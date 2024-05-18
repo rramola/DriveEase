@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var addVehicleYearField = document.getElementById("id_year")
     var addVehicleMakeField = document.getElementById("id_make")
     var addVehicleModelField = document.getElementById("id_model")
+    var createListingPriceField = document.getElementById("id_price")
 
     if (usernameField) {
         usernameField.placeholder = "Username..";
@@ -44,4 +45,9 @@ document.addEventListener("DOMContentLoaded", function() {
     if (addVehicleModelField) {
         addVehicleModelField.placeholder = "Model..";
         }
+
+    if (createListingPriceField) {
+        createListingPriceField.placeholder = "Price per week"
+    }
+
     });

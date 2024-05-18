@@ -5,11 +5,30 @@
     <div id="create_new_listing_form_header">
       <p>Listing Information</p>
     </div>
-    <div id="create_listing_vehicle_selection_container">{{form.vehicle}}</div>
-    <div id="create_listing_vehicle_price_container">{{form.price}}</div>
+    <div id="vehicle_select_field">
+      <div class="select_icon_container">
+        <i class="fas fa-car-side"></i>
+      </div>
+      <div id="create_listing_vehicle_selection_container">
+        {{form.vehicle}}
+      </div>    
+    </div>
+
+
+    <div id="price_select_field">
+      <div class="select_icon_container">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <div id="create_listing_vehicle_price_container">
+        {{form.price}}
+      </div>
+    </div>
+
+
+
     <button type="submit" id="add_vehicle_form_submit_button">Submit</button>
     <button id="create_listing_cancel_button">
-      <a href="{% url 'garage' %}">Cancel</a>
+      <a href="{% url 'garage' %}" class="cancel">Cancel</a>
     </button>
   </form>
 </div>

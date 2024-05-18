@@ -46,7 +46,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return redirect("listings")
+            return redirect("home")
         else:
             messages.info(request, "Username or password is incorrect")
             return render(request, "login.html")
@@ -70,7 +70,7 @@ def listings_page(request):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["admin", "rentor"])
+@authorized_user(allowed_roles=["rentor"])
 def garage_page(request):
     user = request.user.groups.all()[0]
     user_profile = request.user.profile
@@ -82,7 +82,7 @@ def garage_page(request):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["admin", "rentor"])
+@authorized_user(allowed_roles=["rentor"])
 def add_vehicle_page(request):
     form = AddVehicleForm()
     profile = request.user.profile
@@ -97,6 +97,8 @@ def add_vehicle_page(request):
     return render(request, "add_vehicle.html", context)
 
 
+@login_required(login_url="login")
+@authorized_user(allowed_roles=["rentor"])
 def update_vehicle(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
     form = AddVehicleForm(instance=vehicle)
@@ -110,9 +112,10 @@ def update_vehicle(request, pk):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["admin", "rentor"])
+@authorized_user(allowed_roles=["rentor"])
 def delete_vehicle_page(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
+
     context = {"vehicle": vehicle}
     if request.method == "POST":
         vehicle.delete()
@@ -122,7 +125,7 @@ def delete_vehicle_page(request, pk):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["admin", "rentor"])
+@authorized_user(allowed_roles=["rentor"])
 def new_listing_page(request):
     form = CreateListingForm(user_profile=request.user.profile)
     if request.method == "POST":
@@ -131,11 +134,13 @@ def new_listing_page(request):
             listing = form.save(commit=False)
             listing.profile = request.user.profile
             listing.save()
-            return redirect("listings")
+            return redirect("garage")
     context = {"form": form}
     return render(request, "new_listing.html", context)
 
 
+@login_required(login_url="login")
+@authorized_user(allowed_roles=["rentor"])
 def update_listing(request, pk):
     listing = Listing.objects.get(id=pk)
     form = CreateListingForm(instance=listing)
@@ -148,6 +153,8 @@ def update_listing(request, pk):
     return render(request, "new_listing.html", context)
 
 
+@login_required(login_url="login")
+@authorized_user(allowed_roles=["rentor"])
 def delete_listing(request, pk):
     listing = Listing.objects.get(id=pk)
     context = {"listing": listing}

@@ -11,8 +11,25 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <script src="{% static 'scripts.js' %}"></script> 
 <body>
+    
     {% block content %}
-    Rent. Ride. Repeat.
+    <div id="nav_container">
+        <div id="main_nav_items">
+        {% if user_type == "rentor" or user_type == "admin"%}
+        <a href = {% url "garage" %}>Your Garage</a>
+        {% endif %}
+
+        <a href = {% url "listings" %}>Listings</a>
+        </div>
+        <div id="logout_nav_item">
+        <a href="{%url 'logout'%}">Logout</a>
+        </div>
+    </div>
+
+    <div id="home_page_opener">
+        <p id="name">DriveEase</p>
+        <p id="slogan">Rent. Ride. Repeat.</p>
+    </div>
     {% endblock content %}
 
 

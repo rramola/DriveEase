@@ -3,6 +3,24 @@ body {
     margin: 0
 }
 
+/* HOME PAGE STYLES */
+
+#home_page_opener {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#name  {
+    font-size: 7rem;
+}
+
+#slogan {
+    font-size: 2rem;
+    font-style: italic;
+}
 /* NAVIGATION STYLES */
 
 #nav_container {
@@ -309,6 +327,15 @@ body {
 
 /* GARAGE PAGE STYLES */
 
+#garage_page_header_container {
+    text-align: center;
+    font-size:2.5rem;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 #garage_listings_header_container {
     text-align: center;
     font-size:2.5rem;
@@ -343,6 +370,8 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
+
+
 #add_new_vehicle_button_container>button:active {
     background-color: rgb(154, 13, 13);
 }
@@ -430,6 +459,12 @@ body {
     margin-bottom: 2rem;
 }
 
+.input_container {
+    display: flex;
+    height: 2.5rem;
+    padding: 0;
+}
+
 #add_vehicle_form_cancel_button {
     height: 15%;
     width: 40%;
@@ -442,10 +477,6 @@ body {
     margin-bottom: 2rem;
 }
 
-#add_vehicle_form_cancel_button > a {
-    text-decoration: none;
-    color: white;
-}
 
 #add_vehicle_form_cancel_button:hover {
     transform: scale(1.1);
@@ -461,6 +492,16 @@ body {
 
 #add_vehicle_form_submit_button:active {
     background-color: green;
+}
+
+.cancel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -490,6 +531,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+
 #create_new_listing_form_header> p{
     font-size: 2rem;
     margin: 0;
@@ -501,13 +543,45 @@ body {
 #create_listing_vehicle_selection_container{
     display: flex;
     height: 2.5rem;
-    padding-top: 2rem;
 }
+
+
 #create_listing_vehicle_price_container{
     display: flex;
     height: 2.5rem;
+    padding: 0;
+}
+
+
+
+#vehicle_select_field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+
+}
+
+#price_select_field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    width: 45%;
+}
+
+.select_icon_container{
+    display: flex;
+    height: 100%;
+    background-color: green;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    width: 3rem;
+    border-radius: .2rem 0 0 .2rem;
+    padding: 0;
 }
 
 
@@ -537,3 +611,77 @@ body {
     background-color: green;
 }
 
+.delete_container {
+    height: 50vh;
+    width: 100vw;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#delete_form {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    width: 40%;
+    height: fit-content;
+    font-size: 1.4rem;
+    justify-content: center;
+    align-items: center;
+    padding-top:2rem;
+    padding-bottom: 2rem;
+    border-radius: .3rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.delete_button_container {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+.delete_button_container > input{
+    height: 70%;
+    width: fit-content;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: .3rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.delete_button_container > span{
+    width: 100%;
+    height: 100%;
+}
+
+#delete_cancel_button {
+    height: 70%;
+    width: fit-content;
+    background-color: rgb(154, 13, 13);
+    color: white;
+    border: none;
+    border-radius: .3rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+
+.delete_button_container >input:hover {
+    transform: scale(1.1);
+}
+
+.delete_button_container >input:active {
+    background-color: rgb(154, 13, 13);
+}
+
+#delete_cancel_button:hover {
+    transform: scale(1.1);
+}
+
+#delete_cancel_button:active {
+    background-color: green;
+}

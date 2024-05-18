@@ -1,17 +1,30 @@
 {% extends "home.html" %} {% block content %}
-<div id="delete_vehicle_page_container">
+<div id="delete_page_container">
   <div id="nav_container">
-    <a href = {% url "garage" %}>Your Garage</a>
-    <a href = {% url "listings" %}>Listings</a>
-    <a href="{%url 'logout'%}">Logout</a>
+    <div id="main_nav_items">
+        <a href = {% url "garage" %}>Your Garage</a>
+        <a href = {% url "listings" %}>Listings</a>
+    </div>
+    <div id="logout_nav_item">
+        <a href="{%url 'logout'%}">Logout</a>
+    </div>
+</div>
+  <div class="delete_container">
+    <form method="POST" action="{%url 'delete-vehicle' vehicle.id%}" id="delete_form">
+      {% csrf_token %}
+      <div class="delete_container_info">
+        <p>
+          Are you sure you want to delete your {{vehicle.year}} {{vehicle.make}}
+          {{vehicle.model}}?
+        </p>
+      </div>
+      <div class="delete_button_container">
+        <input type="submit" value="Confirm"/>
+        <button id="delete_cancel_button">
+          <span><a href="{% url 'garage' %}" class="cancel">Cancel</a></span>
+        </button>
+      </div>
+    </form>
   </div>
-  <p>
-    Are you sure you want to delete your {{vehicle.year}} {{vehicle.make}}
-    {{vehicle.model}}?
-  </p>
-  <form method="POST" action="{%url 'delete-vehicle' vehicle.id%}">
-    {% csrf_token %}
-    <a href="{%url 'garage' %}">Cancel</a> <input type="submit" />
-  </form>
 </div>
 {% endblock content %}

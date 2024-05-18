@@ -1,6 +1,6 @@
 {% extends "home.html" %} {% block content %} 
 
-<div id="listing_page_container">
+<div id="garage_page_container">
     <div id="nav_container">
         <div id="main_nav_items">
             <a href = {% url "garage" %}>Your Garage</a>
@@ -10,7 +10,7 @@
             <a href="{%url 'logout'%}">Logout</a>
         </div>
     </div>
-    <div id="listing_page_header_container">
+    <div id="garage_page_header_container">
         <p>Your Vehicles</p>
         <div id="garage_buttons_container">
             <form action={% url "add-vehicle" %}>

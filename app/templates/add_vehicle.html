@@ -6,13 +6,30 @@
     <div id="add_vehicle_form_header">
       <p>Vehicle Information</p>
     </div>
-    <div id="add_vehicle_form_year_input_container">{{form.image}}</div>
-    <div id="add_vehicle_form_year_input_container">{{form.year}}</div>
-    <div id="add_vehicle_form_make_input_container">{{form.make}}</div>
-    <div id="add_vehicle_form_model_input_container">{{form.model}}</div>
+    <div id="add_vehicle_form_year_input_container">
+      <div class="input_container">{{form.image}}</div>
+    </div>
+    <div id="add_vehicle_form_year_input_container">
+      <div class="select_icon_container">
+        <i class="fas fa-car-side"></i>
+      </div>
+      <div class="input_container">{{form.year}}</div>
+    </div>
+    <div id="add_vehicle_form_make_input_container">
+      <div class="select_icon_container">
+        <i class="fas fa-car-side"></i>
+      </div>
+      <div class="input_container">{{form.make}}</div>
+    </div>
+    <div id="add_vehicle_form_model_input_container">
+      <div class="select_icon_container">
+        <i class="fas fa-car-side"></i>
+      </div>
+      <div class="input_container">{{form.model}}</div>
+    </div>
     <button type="submit" id="add_vehicle_form_submit_button">Submit</button>
     <button id="add_vehicle_form_cancel_button">
-      <a href="{% url 'garage' %}">Cancel</a>
+      <span><a href="{% url 'garage' %}" class="cancel">Cancel</a></span>
     </button>
   </form>
 </div>

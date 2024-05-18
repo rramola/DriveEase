@@ -5,13 +5,21 @@
     <a href = {% url "listings" %}>Listings</a>
     <a href="{%url 'logout'%}">Logout</a>
   </div>
-  <p>
-    Are you sure you want to delete your {{listing.vehicle.year}} {{listing.vehicle.make}}
-    {{listing.vehicle.model}} listing?
-  </p>
-  <form method="POST" action="{%url 'delete-listing' listing.id%}">
-    {% csrf_token %}
-    <a href="{%url 'garage' %}">Cancel</a> <input type="submit" />
-  </form>
+  <div class="delete_container">
+    <form method="POST" action="{%url 'delete-listing' listing.id%}" id="delete_form">
+      {% csrf_token %}
+      <div class="delete_container_info">
+        <p>
+          Are you sure you want to delete your {{listing.vehicle.year}} {{listing.vehicle.make}}
+          {{listing.vehicle.model}} listing?
+        </p>
+      </div>
+      <div class="delete_button_container">
+        <input type="submit" value="Confirm"/>
+        <button id="delete_cancel_button">
+          <span><a href="{% url 'garage' %}" class="cancel">Cancel</a></span>
+        </button>
+    </form>
+  </div>
 </div>
 {% endblock content %}
