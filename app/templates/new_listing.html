@@ -3,11 +3,11 @@
   <form method="POST" action="" id="create_new_listing_form">
     {% csrf_token %}
     <div id="create_new_listing_form_header">
-      <p>Create New Listing</p>
+      <p>Listing Information</p>
     </div>
     <div id="create_listing_vehicle_selection_container">{{form.vehicle}}</div>
     <div id="create_listing_vehicle_price_container">{{form.price}}</div>
-    <button type="submit" id="add_vehicle_form_submit_button">Add</button>
+    <button type="submit" id="add_vehicle_form_submit_button">Submit</button>
     <button id="create_listing_cancel_button">
       <a href="{% url 'garage' %}">Cancel</a>
     </button>

@@ -6,21 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DriveEase</title>
     <link rel="stylesheet" href={% static 'styles.css' %}>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <script src="{% static 'scripts.js' %}"></script> 
 <body>
-        {% comment %} <div id="nav_container">
-            <p>RENT YOUR CAR TODAY!</p> {% endcomment %}
-            {% comment %} <a href = {% url "home" %}>home</a> {% endcomment %}
-            {% comment %} <a href = {% url "register" %}>signup</a>
-            <a href = {% url "login" %}>login</a>
-            <a href = {% url "listings" %}>listings</a>
-            <a href = {% url "garage" %}>garage</a>
-            <a href = {% url "new-listing" %}>new-listing</a>
-            <a href="{%url 'logout'%}">logout</a> {% endcomment %}
     {% block content %}
+    Rent. Ride. Repeat.
     {% endblock content %}
 
 

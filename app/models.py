@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Create your models here.
 
 
 class Profile(models.Model):
+    account_type = (("Rentor", "Rentor"), ("Rentee", "Rentee"))
     user = models.OneToOneField(
         User,
         null=True,
@@ -12,6 +13,8 @@ class Profile(models.Model):
     )
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
+    groups = models.CharField(max_length=6, choices=account_type, default="")
+
 
 class Vehicle(models.Model):
     profile = models.ForeignKey(
@@ -24,7 +27,7 @@ class Vehicle(models.Model):
     #     max_length=None,
     #     default="",
     # )
-    year = models.IntegerField()
+    year = models.CharField(max_length=4)
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
 

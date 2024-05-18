@@ -23,14 +23,17 @@ from app.views import *
 
 urlpatterns = [
     path("new-listing/", new_listing_page, name="new-listing"),
+    path("update-listing/<str:pk>/", update_listing, name="update-listing"),
+    path("delete-listing/<str:pk>/", delete_listing, name="delete-listing"),   
     path("garage/", garage_page, name="garage"),
     path("add-vehicle/", add_vehicle_page, name="add-vehicle"),
+    path("update-vehicle/<str:pk>/", update_vehicle, name="update-vehicle"),
     path("delete-vehicle/<str:pk>/", delete_vehicle_page, name="delete-vehicle"),
     path("register/", registration_page, name="register"),
     path("login/", login_page, name="login"),
     path("logout/", logout_user, name="logout"),
     path("listings/", listings_page, name="listings"),
-    path("", home_page, name="home"),
+    path("", listings_page, name="home"),
     path("admin/", admin.site.urls),
 ]
 

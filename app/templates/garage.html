@@ -2,9 +2,13 @@
 
 <div id="listing_page_container">
     <div id="nav_container">
-        <a href = {% url "garage" %}>Your Garage</a>
-        <a href = {% url "listings" %}>Listings</a>
-        <a href="{%url 'logout'%}">Logout</a>
+        <div id="main_nav_items">
+            <a href = {% url "garage" %}>Your Garage</a>
+            <a href = {% url "listings" %}>Listings</a>
+        </div>
+        <div id="logout_nav_item">
+            <a href="{%url 'logout'%}">Logout</a>
+        </div>
     </div>
     <div id="listing_page_header_container">
         <p>Your Vehicles</p>
@@ -23,32 +27,71 @@
         </div>
     </div>
 
-    <div id="listings_container">
+    <div class="cards_container">
         {% for vehicle in vehicles %}
-
-        <div class="listing_card">
-            <div class="listing_card_vehicle_image">
+        <div class="vehicle_card_container">
+            <div class="vehicle_card_image_container">
                 <i class="fas fa-car-side"></i>
             </div>
-            <div class="listing_card_vehicle_info_container">
-                <div class="listing_card_vehicle_year">
+            <div class="vehicle_card_info_container">
+                <div class="vehicle_card_year">
                     {{vehicle.year}}
                 </div>
-                <div class="listing_card_vehicle_make">
+                <div class="vehicle_card_make">
                     {{vehicle.make}}
                 </div>
-                <div class="listing_card_vehicle_model"> 
+                <div class="vehicle_card_model"> 
                     {{vehicle.model}} 
                 </div>
             </div>
-            <div id="delete_vehicle_info_button_container">
+            <div class="update_info_button_container">
+                <form action={%url 'update-vehicle' vehicle.id%}>
+                    <button type="submit" class="update_card_button">Update</a></button>
+                </form>
                 <form action={%url 'delete-vehicle' vehicle.id%}>
-                    <button type="submit" id="cancel_button">Delete</a></button>
+                    <button type="submit" class="delete_card_button">Delete</a></button>
                 </form>
             </div>
         </div>
         {% endfor %}
     </div>
 
+
+    <div id="garage_listings_header_container">
+        <p>Your Listings</p>
+    </div>
+    <div class="cards_container">
+        {% for listing in listings %}
+        <div class="vehicle_card_container">
+            <div class="vehicle_card_image_container">
+                <i class="fas fa-car-side"></i>
+            </div>
+            <div class="vehicle_card_info_container">
+                <div class="vehicle_card_year">
+                    {{listing.vehicle.year}}
+                </div>
+                <div class="vehicle_card_make">
+                    {{listing.vehicle.make}}
+                </div>
+                <div class="vehicle_card_model"> 
+                    {{listing.vehicle.model}} 
+                </div>
+            </div>
+            <div class="listing_card_price_container">
+                <div class="listing_card_price">
+                    <p>PRICE: {{listing.price}}/WK</p>
+                </div>
+            </div>
+            <div class="update_info_button_container">
+                <form action={%url 'update-listing' listing.id%}>
+                    <button type="submit" class="update_card_button">Update</a></button>
+                </form>
+                <form action={%url 'delete-listing' listing.id%}>
+                    <button type="submit" class="delete_card_button">Delete</a></button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {%endblock content%}

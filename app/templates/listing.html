@@ -3,29 +3,35 @@
 {% block content %} 
 <div id="listing_page_container">
     <div id="nav_container">
+        <div id="main_nav_items">
+        {% if user_type == "rentor" or user_type == "admin"%}
         <a href = {% url "garage" %}>Your Garage</a>
-        <a href = {% url "listings" %}>Listing</a>
+        {% endif %}
+
+        <a href = {% url "listings" %}>Listings</a>
+        </div>
+        <div id="logout_nav_item">
         <a href="{%url 'logout'%}">Logout</a>
+        </div>
     </div>
     <div id="listing_page_header_container">
         <p>LISTINGS</p>
     </div>
 
-    <div id="listings_container">
+    <div class="cards_container">
         {% for listing in listings %}
-
-        <div class="listing_card">
-            <div class="listing_card_vehicle_image">
+        <div class="vehicle_card_container">
+            <div class="vehicle_card_image_container">
                 <i class="fas fa-car-side"></i>
             </div>
-            <div class="listing_card_vehicle_info_container">
-                <div class="listing_card_vehicle_year">
+            <div class="vehicle_card_info_container">
+                <div class="vehicle_card_year">
                     {{listing.vehicle.year}}
                 </div>
-                <div class="listing_card_vehicle_make">
+                <div class="vehicle_card_make">
                     {{listing.vehicle.make}}
                 </div>
-                <div class="listing_card_vehicle_model"> 
+                <div class="vehicle_card_model"> 
                     {{listing.vehicle.model}} 
                 </div>
             </div>
