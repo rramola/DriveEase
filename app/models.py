@@ -20,13 +20,7 @@ class Vehicle(models.Model):
     profile = models.ForeignKey(
         Profile, verbose_name="user_profile", on_delete=models.CASCADE, default=""
     )
-    # image = models.ImageField(
-    #     upload_to="vehicle_images",
-    #     height_field=None,
-    #     width_field=None,
-    #     max_length=None,
-    #     default="",
-    # )
+    vehicle_image = models.ImageField(default="car.png", null=True, blank=True)
     year = models.CharField(max_length=4)
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)

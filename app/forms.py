@@ -29,7 +29,7 @@ class CreateUserForm(UserCreationForm):
 class AddVehicleForm(ModelForm):
     class Meta:
         model = Vehicle
-        fields = ["year", "make", "model"]
+        fields = ["year", "make", "model", "vehicle_image"]
 
 
 class CreateListingForm(ModelForm):

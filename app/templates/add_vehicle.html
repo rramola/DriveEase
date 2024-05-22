@@ -1,13 +1,21 @@
 {% extends "home.html" %} {% block content %}
 
 <div id="add_vehicle_page_container">
-  <form method="POST" action="" id="add_vehicle_form_container">
+  <form
+    method="POST"
+    action=""
+    id="add_vehicle_form_container"
+    enctype="multipart/form-data"
+  >
     {% csrf_token %}
     <div id="add_vehicle_form_header">
       <p>Vehicle Information</p>
     </div>
-    <div id="add_vehicle_form_year_input_container">
-      <div class="input_container">{{form.image}}</div>
+    <div id="add_vehicle_form_image_container">
+      <div class="image_input_container">
+        <p>Please select a vehicle image.</p>
+        {{form.vehicle_image}}
+      </div>
     </div>
     <div id="add_vehicle_form_year_input_container">
       <div class="select_icon_container">

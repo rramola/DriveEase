@@ -14,7 +14,8 @@ from .decorators import authorized_user
 
 @login_required(login_url="login")
 def home_page(request):
-    context = {}
+    user_type = request.user.groups.all()[0].name
+    context = {"user_type": user_type}
     return render(request, "home.html", context)
 
 
@@ -87,7 +88,7 @@ def add_vehicle_page(request):
     form = AddVehicleForm()
     profile = request.user.profile
     if request.method == "POST":
-        form = AddVehicleForm(request.POST)
+        form = AddVehicleForm(request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
             vehicle.profile = profile
@@ -103,7 +104,7 @@ def update_vehicle(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
     form = AddVehicleForm(instance=vehicle)
     if request.method == "POST":
-        form = AddVehicleForm(request.POST, instance=vehicle)
+        form = AddVehicleForm(request.POST, request.FILES, instance=vehicle)
         if form.is_valid():
             form.save()
             return redirect("garage")
