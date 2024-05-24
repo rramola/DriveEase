@@ -1,0 +1,37 @@
+{% extends "home.html" %} {% block content %}
+<div class="rental_container">
+  <div id="confirm_rental_header">
+    <p>Confirm Rental?</p>
+  </div>
+  <div class="cards_container">
+    <div class="vehicle_card_container">
+      <div class="vehicle_card_image_container">
+        <img src="{{listing.vehicle.vehicle_image.url}}" />
+      </div>
+      <div class="vehicle_card_info_container">
+        <div class="vehicle_card_year">{{listing.vehicle.year}}</div>
+        <div class="vehicle_card_make">{{listing.vehicle.make}}</div>
+        <div class="vehicle_card_model">{{listing.vehicle.model}}</div>
+      </div>
+      <div class="listing_card_price_container">
+        <div class="listing_card_price">
+          <p>PRICE: {{listing.price}}/WK</p>
+        </div>
+      </div>
+      <form
+        method="POST"
+        action="{%url 'rent-vehicle' listing.id%}"
+        id="rental_form"
+      >
+        {% csrf_token %}
+        <div class="rental_button_container">
+          <input type="submit" value="Confirm" />
+          <button id="delete_cancel_button">
+            <span><a href="{% url 'garage' %}" class="cancel">Cancel</a></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

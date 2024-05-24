@@ -22,6 +22,8 @@ from django.urls import path
 from app.views import *
 
 urlpatterns = [
+    path("return-vehicle/<str:pk>/", return_vehicle_page, name="return-vehicle"),
+    path("rent-vehicle/<str:pk>/", rent_vehicle_page, name="rent-vehicle"),
     path("new-listing/", new_listing_page, name="new-listing"),
     path("update-listing/<str:pk>/", update_listing, name="update-listing"),
     path("delete-listing/<str:pk>/", delete_listing, name="delete-listing"),

@@ -4,6 +4,8 @@
 <div id="listing_page_container">
     <div id="nav_container">
         <div id="main_nav_items">
+        <a href = {% url "home" %}>Home</a>
+
         {% if user_type == "rentor" or user_type == "admin"%}
         <a href = {% url "garage" %}>Your Garage</a>
         {% endif %}
@@ -19,6 +21,7 @@
     </div>
 
     <div class="cards_container">
+        {% if listings_found == False %}<h1 id="try_again">Check back for more listings later..</h1>{% endif %}
         {% for listing in listings %}
         <div class="vehicle_card_container">
             <div class="vehicle_card_image_container">
@@ -40,6 +43,9 @@
                     <p>PRICE: {{listing.price}}/WK</p>
                 </div>
             </div>
+            <form action={%url 'rent-vehicle' listing.id%} id="rental_form">
+                <button type="submit" class="delete_card_button">Rent</a></button>
+            </form>
         </div>
         {% endfor %}
     </div>

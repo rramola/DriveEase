@@ -35,3 +35,7 @@ class Listing(models.Model):
         Vehicle, verbose_name="vehicle", on_delete=models.CASCADE
     )
     price = models.IntegerField(null=True)
+    is_rented = models.BooleanField(default=False)
+    rentee_profile = models.ForeignKey(
+        Profile, related_name="rentee", on_delete=models.CASCADE, null=True
+    )

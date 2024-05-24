@@ -52,7 +52,6 @@ This app will use form objects to validate car listings and rental requests, and
 sign up
 login
 logout
-
 add vehicle
 create listing
 modify vehicle

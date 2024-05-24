@@ -45,7 +45,6 @@ class CreateListingForm(ModelForm):
             listed_vehicles = []
             user_listings = Listing.objects.filter(profile=user_profile)
             user_vehicles = Vehicle.objects.filter(profile=user_profile)
-
             for listing in user_listings:
                 listed_vehicles.append(listing.vehicle)
             for vehicle in user_vehicles:

@@ -14,8 +14,17 @@ from .decorators import authorized_user
 
 @login_required(login_url="login")
 def home_page(request):
+    user_profile = request.user.profile
     user_type = request.user.groups.all()[0].name
-    context = {"user_type": user_type}
+    rentals = Listing.objects.filter(rentee_profile=user_profile)
+    rentals_found = True
+    if len(rentals) < 1:
+        rentals_found = False
+    context = {
+        "user_type": user_type,
+        "rentals": rentals,
+        "rentals_found": rentals_found,
+    }
     return render(request, "home.html", context)
 
 
@@ -65,8 +74,15 @@ def logout_user(request):
 @login_required(login_url="login")
 def listings_page(request):
     user_type = request.user.groups.all()[0].name
-    listings = Listing.objects.all()
-    context = {"listings": listings, "user_type": user_type}
+    listings = Listing.objects.filter(is_rented=False)
+    listings_found = True
+    if len(listings) < 1:
+        listings_found = False
+    context = {
+        "listings": listings,
+        "user_type": user_type,
+        "listings_found": listings_found,
+    }
     return render(request, "listing.html", context)
 
 
@@ -163,3 +179,26 @@ def delete_listing(request, pk):
         listing.delete()
         return redirect("garage")
     return render(request, "delete_listing.html", context)
+
+
+def rent_vehicle_page(request, pk):
+    listing = Listing.objects.get(id=pk)
+    profile = request.user.profile
+    context = {"listing": listing}
+    if request.method == "POST":
+        listing.rentee_profile = profile
+        listing.is_rented = True
+        listing.save()
+        return redirect("home")
+    return render(request, "rent_vehicle.html", context)
+
+
+def return_vehicle_page(request, pk):
+    listing = Listing.objects.get(id=pk)
+    context = {"listing": listing}
+    if request.method == "POST":
+        listing.rentee_profile = None
+        listing.is_rented = False
+        listing.save()
+        return redirect("home")
+    return render(request, "return_vehicle.html", context)
