@@ -35,8 +35,8 @@
             <div id="garage_listings_header_container">
                 <p>Your current rentals</p>
             </div>
-            {% if rentals_found == False %}<h3 id="try_again">You currently have no rentals..</h1>{% endif %}
             <div class="cards_container">
+                {% if rentals_found == False %}<h3 id="try_again">You currently have no rentals..</h1>{% endif %}
 
             {% for rental in rentals  %}
                 <div class="vehicle_card_container">

@@ -260,11 +260,11 @@ body {
     align-items: center;
 }
 
-.try_again {
+/* .try_again {
     display: flex;
-    width: 100vw;
     justify-content: center;
-}
+} */
+
 /* VEHICLE CARDS STYLES */
 
 .cards_container {
