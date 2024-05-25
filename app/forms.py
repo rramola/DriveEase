@@ -8,6 +8,12 @@ from .models import *
 
 
 class CreateUserForm(UserCreationForm):
+    username = forms.CharField(max_length=150, required=True)
+    first_name = forms.CharField(max_length=30, required=True)
+    last_name = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(required=True)
+    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
     group = forms.ModelChoiceField(
         queryset=Group.objects.filter(Q(name="rentor") | Q(name="rentee")),
         required=True,
@@ -39,6 +45,7 @@ class CreateListingForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         user_profile = kwargs.pop("user_profile", None)
+        listing_id = kwargs.pop("test", None)
         super(CreateListingForm, self).__init__(*args, **kwargs)
         if user_profile:
             unlisted_vehicles = []
@@ -52,4 +59,12 @@ class CreateListingForm(ModelForm):
                     unlisted_vehicles.append(vehicle.pk)
             self.fields["vehicle"].queryset = Vehicle.objects.filter(
                 pk__in=unlisted_vehicles
+            )
+        if listing_id:
+            listing = Listing.objects.filter(id=listing_id)
+            listed_vehicle = []
+            for item in listing:
+                listed_vehicle .append(item.vehicle.pk)
+            self.fields["vehicle"].queryset = Vehicle.objects.filter(
+                pk__in=listed_vehicle
             )

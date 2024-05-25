@@ -43,9 +43,9 @@
                     <p>PRICE: {{listing.price}}/WK</p>
                 </div>
             </div>
-            <form action={%url 'rent-vehicle' listing.id%} id="rental_form">
+            {% if listing.profile != user.profile %}<form action={%url 'rent-vehicle' listing.id%} id="rental_form">
                 <button type="submit" class="delete_card_button">Rent</a></button>
-            </form>
+            </form>{% endif %}
         </div>
         {% endfor %}
     </div>

@@ -46,12 +46,13 @@
                 </div>
             </div>
             <div class="update_info_button_container">
-                <form action={%url 'update-vehicle' vehicle.id%}>
+                {% if vehicle not in rented_vehicles %} <form action={%url 'update-vehicle' vehicle.id%}>
                     <button type="submit" class="update_card_button">Update</a></button>
                 </form>
                 <form action={%url 'delete-vehicle' vehicle.id%}>
                     <button type="submit" class="delete_card_button">Delete</a></button>
-                </form>
+                </form>{% endif %}
+                {% if vehicle in rented_vehicles %}<p id="rented_text">Vehicle is currently rented</p>{% endif %}
             </div>
         </div>
         {% endfor %}
@@ -84,12 +85,14 @@
                 </div>
             </div>
             <div class="update_info_button_container">
-                <form action={%url 'update-listing' listing.id%}>
+
+                {% if listing.is_rented == False %}       <form action={%url 'update-listing' listing.id%}>
                     <button type="submit" class="update_card_button">Update</a></button>
-                </form>
-                <form action={%url 'delete-listing' listing.id%}>
+                </form> <form action={%url 'delete-listing' listing.id%}>
                     <button type="submit" class="delete_card_button">Delete</a></button>
-                </form>
+                </form>{% endif %}
+                {% if listing.is_rented %}<p id="rented_text">Vehicle is currently rented</p>{% endif %}
+
             </div>
         </div>
         {% endfor %}

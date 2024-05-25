@@ -21,7 +21,7 @@ class Vehicle(models.Model):
         Profile, verbose_name="user_profile", on_delete=models.CASCADE, default=""
     )
     vehicle_image = models.ImageField(default="car.png", null=True, blank=True)
-    year = models.CharField(max_length=4)
+    year = models.IntegerField()
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
 

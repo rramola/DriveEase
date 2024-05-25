@@ -73,6 +73,7 @@ def logout_user(request):
 
 @login_required(login_url="login")
 def listings_page(request):
+    user_profile = request.user.profile
     user_type = request.user.groups.all()[0].name
     listings = Listing.objects.filter(is_rented=False)
     listings_found = True
@@ -82,24 +83,28 @@ def listings_page(request):
         "listings": listings,
         "user_type": user_type,
         "listings_found": listings_found,
+        "user_profile": user_profile,
     }
     return render(request, "listing.html", context)
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def garage_page(request):
     user = request.user.groups.all()[0]
     user_profile = request.user.profile
     vehicles = Vehicle.objects.filter(profile__name=request.user.first_name)
     listings = Listing.objects.filter(profile=user_profile)
-
-    context = {"vehicles": vehicles, "user": user, "listings": listings}
+    rented_listings = Listing.objects.filter(is_rented=True)
+    rented_vehicles = []
+    for listing in rented_listings:
+        rented_vehicles.append(listing.vehicle)
+    context = {"vehicles": vehicles, "user": user, "listings": listings, "rented_vehicles": rented_vehicles}
     return render(request, "garage.html", context)
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def add_vehicle_page(request):
     form = AddVehicleForm()
     profile = request.user.profile
@@ -115,7 +120,7 @@ def add_vehicle_page(request):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def update_vehicle(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
     form = AddVehicleForm(instance=vehicle)
@@ -129,7 +134,7 @@ def update_vehicle(request, pk):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def delete_vehicle_page(request, pk):
     vehicle = Vehicle.objects.get(id=pk)
 
@@ -142,7 +147,7 @@ def delete_vehicle_page(request, pk):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def new_listing_page(request):
     form = CreateListingForm(user_profile=request.user.profile)
     if request.method == "POST":
@@ -157,10 +162,10 @@ def new_listing_page(request):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def update_listing(request, pk):
     listing = Listing.objects.get(id=pk)
-    form = CreateListingForm(instance=listing)
+    form = CreateListingForm(test=pk)
     context = {"form": form}
     if request.method == "POST":
         form = CreateListingForm(request.POST, instance=listing)
@@ -171,7 +176,7 @@ def update_listing(request, pk):
 
 
 @login_required(login_url="login")
-@authorized_user(allowed_roles=["rentor"])
+@authorized_user(allowed_roles=["rentor", "admin"])
 def delete_listing(request, pk):
     listing = Listing.objects.get(id=pk)
     context = {"listing": listing}
@@ -180,7 +185,7 @@ def delete_listing(request, pk):
         return redirect("garage")
     return render(request, "delete_listing.html", context)
 
-
+@login_required(login_url="login")
 def rent_vehicle_page(request, pk):
     listing = Listing.objects.get(id=pk)
     profile = request.user.profile
@@ -192,7 +197,7 @@ def rent_vehicle_page(request, pk):
         return redirect("home")
     return render(request, "rent_vehicle.html", context)
 
-
+@login_required(login_url="login")
 def return_vehicle_page(request, pk):
     listing = Listing.objects.get(id=pk)
     context = {"listing": listing}
@@ -202,3 +207,7 @@ def return_vehicle_page(request, pk):
         listing.save()
         return redirect("home")
     return render(request, "return_vehicle.html", context)
+
+
+def custom_404_view(request, exception):
+    return render(request, 'error.html', status=404)
