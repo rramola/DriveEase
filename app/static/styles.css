@@ -776,6 +776,10 @@ img{
     align-content: center;
 }
 
+.confirm_rental_cards_container {
+    display: flex;
+}
+
 .rental_button_container > span{
     width: 100%;
     height: 100%;
