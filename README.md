@@ -41,13 +41,13 @@ Here are the baseline requirements. Your application must:
 
 Car rental app.
 
-Users can sign up, log in, and list their cars for rent. They can provide details about each car, such as model, year, daily rental price, and availability.
+Users can sign up, log in, and list their cars for rent. They can provide details about each car, such as year, make, model.
 
-Other users can then browse the available cars, select the ones they're interested in, and make rental requests. The system would manage the booking process, including scheduling, payments, and notifications.
+Other users can then browse the available cars, select the ones they're interested in, and rent those vehicles
 
-For permissions and groups, there will be regular users and car owners. Regular users can browse and rent cars, while car owners have additional permissions to list their cars and manage bookings.
+For permissions and groups, there will be rentors and rentees. rentees can browse and rent cars, while rentors have additional permissions to list their cars and manage their garage.
 
-This app will use form objects to validate car listings and rental requests, and appropriate database relationships to track cars, users, and bookings. Certain pages, such as car listing management or booking approval, will be restricted to logged-in users.
+This app will use form objects to validate car listings and rental requests, and appropriate database relationships to track cars, users, and bookings. Certain pages, such as car listing management will be restricted to logged-in users.
 
 sign up
 login
@@ -60,3 +60,5 @@ delete vehicle
 delete listing
 view listings
 view vehicles
+rent vehicle
+return rental

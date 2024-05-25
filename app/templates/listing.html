@@ -17,7 +17,7 @@
         </div>
     </div>
     <div id="listing_page_header_container">
-        <p>LISTINGS</p>
+        <p>AVAILABLE LISTINGS</p>
     </div>
 
     <div class="cards_container">
@@ -46,6 +46,8 @@
             {% if listing.profile != user.profile %}<form action={%url 'rent-vehicle' listing.id%} id="rental_form">
                 <button type="submit" class="delete_card_button">Rent</a></button>
             </form>{% endif %}
+            {% if listing.profile == user.profile %}
+            <p id="rented_text">This is your vehicle.</p>{% endif %}
         </div>
         {% endfor %}
     </div>

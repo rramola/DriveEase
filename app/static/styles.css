@@ -45,6 +45,7 @@ body {
     width: 100%;
     display: flex;
     column-gap: 3rem;
+    padding-right: 2rem;
 }
 
 #main_nav_items > a {
@@ -268,8 +269,8 @@ body {
 /* VEHICLE CARDS STYLES */
 
 .cards_container {
-    display: flex;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
     column-gap: 4rem;
     margin: 2rem;
 }
@@ -677,14 +678,16 @@ img{
     align-items: center;
     padding-top:2rem;
     padding-bottom: 2rem;
+    padding-left:2rem;
+    padding-right: 2rem;
     border-radius: .3rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .delete_button_container {
     display: flex;
-    width: 40%;
     justify-content: space-between;
+    column-gap: 2rem;
 }
 .delete_button_container > input{
     height: 70%;
